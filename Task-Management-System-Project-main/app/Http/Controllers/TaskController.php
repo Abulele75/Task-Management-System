@@ -10,6 +10,7 @@ use App\Models\AAUser;
 
 class TaskController extends Controller
 {
+<<<<<<< HEAD
     public function index() {
         $tasks = Task::where('user_id', Auth::id())->get();
         return view('tasks.index', compact('tasks'));
@@ -18,6 +19,16 @@ class TaskController extends Controller
     public function create() {
         return view('tasks.create');
     }
+=======
+    public function index() {
+        $tasks = Task::where('user_id', Auth::id())->get();
+        return view('tasks.index', compact('tasks'));
+    }
+
+    public function create() {
+        return view('tasks.create');
+    }
+>>>>>>> 508c97c06822a892b058f9152746249846231d1a
 
     public function store(Request $request) {
         $request->validate([
@@ -51,6 +62,7 @@ public function update(Request $request, Task $task) {
         'deadline' => 'required|date',
     ]);
 
+<<<<<<< HEAD
     $task->update([
         'title' => $request->title,
         'description' => $request->description,
@@ -64,5 +76,20 @@ public function update(Request $request, Task $task) {
 public function destroy(Task $task) {
     $task->delete();
     return redirect()->route('tasks.index');
+=======
+    $task->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'priority' => $request->priority,
+        'status' => $request->status,
+        'deadline' => $request->deadline,
+    ]);
+
+    return redirect()->route('tasks.index');
+}
+public function destroy(Task $task) {
+    $task->delete();
+    return redirect()->route('tasks.index');
+>>>>>>> 508c97c06822a892b058f9152746249846231d1a
 }
 }
